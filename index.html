@@ -13,8 +13,9 @@
     
     <meta property="og:title" content="גמ&quot;ח אירועים נריה - קטלוג והזמנות">
     <meta property="og:description" content="מערכת הזמנות חכמה לציוד אירועים. היכנסו לצפייה בקטלוג ובדיקת זמינות.">
-    <meta property="og:image" content="preview.jpg">
-   <meta property="og:image" content="https://gmach-eruim-nerya.vercel.app/preview.jpg">
+    <!-- תיקון תמונה לוואטסאפ - כתובת מלאה -->
+    <meta property="og:image" content="https://gmach-eruim-nerya.vercel.app/preview.jpg">
+    <meta property="og:url" content="https://gmach-eruim-nerya.vercel.app/">
     <meta property="og:type" content="website">
 
     <!-- Schema.org Markup for Local Business/Organization -->
@@ -23,7 +24,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "גמ\"ח אירועים נריה",
-      "image": "preview.jpg",
+      "image": "https://gmach-eruim-nerya.vercel.app/preview.jpg",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Neria",
@@ -42,16 +43,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
- .hero-section {
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+        :root { --gold: #C5A059; --navy: #1A1C2C; }
+        body { font-family: 'Assistant', sans-serif; background-color: #fcfcfc; scroll-behavior: smooth; overflow-x: hidden; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .gold-gradient { background: linear-gradient(135deg, #C5A059 0%, #F1D27B 50%, #C5A059 100%); }
+        .card-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); }
+        
+        .hero-section {
             background: linear-gradient(to bottom, rgba(26, 28, 44, 0.2), rgba(26, 28, 44, 0.5)),
                         url('preview.jpg');
-            /* cover מבטיח שהתמונה תמלא את כל השטח בלי להתעוות */
             background-size: cover; 
-            /* מרכז את התמונה כדי שיראו גם תקרה וגם רצפה */
             background-position: center; 
             background-repeat: no-repeat;
-            background-attachment: scroll; /* עדיף לניידים */
+            background-attachment: scroll;
         }
+
         .step-active { color: var(--gold); border-bottom: 3px solid var(--gold); }
         .loader { border: 3px solid #f3f3f3; border-top: 3px solid var(--gold); border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -66,7 +73,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* אנימציית תעופה לעגלה */
         .fly-item {
             position: fixed;
             z-index: 1000;
@@ -78,7 +84,6 @@
             transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
         }
         
-        /* עיצוב לאינפוטים של תאריך */
         input[type="date"] { cursor: pointer; }
     </style>
 </head>
@@ -99,30 +104,27 @@
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
-    <header class="hero-section min-h-[45vh] md:min-h-[55vh] flex flex-col relative text-white no-print">
+    <!-- שינוי גובה ה-header כדי שיראו את כל התמונה (תקרה ורצפה) -->
+    <header class="hero-section min-h-[75vh] md:min-h-[85vh] flex flex-col relative text-white no-print">
         <nav class="p-4 md:p-6 flex justify-between items-center max-w-7xl mx-auto w-full z-20">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 md:w-12 md:h-12 gold-gradient rounded-full flex items-center justify-center shadow-lg">
                     <i data-lucide="sparkles" class="text-navy w-5 h-5 md:w-6 md:h-6"></i>
                 </div>
                 <div>
-                    <!-- שינוי סמנטי ל-SEO: זה כבר לא H1 אלא טקסט לוגו -->
                     <div class="text-xl md:text-2xl font-bold serif italic leading-none">לשמחות בכל עת</div>
                     <p class="text-[9px] md:text-[10px] tracking-[0.2em] uppercase opacity-70">Luxury Event Rentals</p>
                 </div>
             </div>
             
             <div class="flex items-center gap-4 md:gap-6">
-                <!-- כפתורים לדסקטופ -->
                 <button onclick="lookupOrder()" class="opacity-60 hover:opacity-100 transition-opacity text-xs font-bold tracking-widest border-l border-white/20 pl-6 hidden md:block">חיפוש/עריכת הזמנה</button>
                 <button onclick="showAdminLogin()" class="opacity-60 hover:opacity-100 transition-opacity text-xs font-bold tracking-widest transform md:translate-x-5 hidden md:block">ניהול מלאי</button>
                 
-                <!-- כפתור תפריט למובייל -->
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors" aria-label="תפריט">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
 
-                <!-- כפתור עגלה -->
                 <button id="cart-btn-icon" onclick="toggleCart(true)" class="relative bg-white/10 p-3 md:p-4 rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all" aria-label="עגלת קניות">
                     <i data-lucide="shopping-cart" class="w-5 h-5 md:w-6 md:h-6"></i>
                     <span id="cart-count" class="absolute -top-2 -right-2 gold-gradient text-navy text-[11px] font-extrabold w-6 h-6 rounded-full flex items-center justify-center border-2 border-navy hidden">0</span>
@@ -130,7 +132,6 @@
             </div>
         </nav>
         
-        <!-- תפריט נפתח למובייל -->
         <div id="mobile-menu" class="hidden absolute top-[70px] left-0 right-0 bg-navy/95 backdrop-blur-xl border-t border-white/10 p-4 z-50 flex flex-col gap-4 md:hidden shadow-2xl">
             <button onclick="lookupOrder(); toggleMobileMenu()" class="flex items-center gap-3 text-white p-3 rounded-xl hover:bg-white/10 border border-white/5">
                 <i data-lucide="search" class="text-gold w-5 h-5"></i>
@@ -144,7 +145,6 @@
         
         <div class="flex-1 flex flex-col items-center justify-center text-center px-4 z-10 space-y-4 md:space-y-8 pb-8">
             <div>
-                <!-- שינוי סמנטי ל-SEO: זה ה-H1 האמיתי של העמוד -->
                 <h1 class="text-4xl md:text-7xl font-bold mb-2 md:mb-4 serif">גמ"ח אירועים נריה</h1>
                 <p class="text-lg md:text-xl text-white/80 max-w-2xl font-light mx-auto">ציוד מושלם לאירועים, שמחות והתכנסויות.</p>
             </div>
@@ -161,7 +161,7 @@
             </div>
         </div>
     </header>
-
+    
     <main class="max-w-7xl mx-auto px-4 py-6 md:py-12 no-print">
         
         <!-- Smart Availability Check Section -->
