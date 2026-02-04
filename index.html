@@ -462,28 +462,53 @@
         function getAvailableStock(itemName, pDate, rDate) {
             const item = inventory.find(i => i.שם_פריט === itemName);
             if (!item) return 0;
+            
+            // אם אין תאריכים לבדיקה, החזר את המלאי הכללי
+            if (!pDate || !rDate) return item.מלאי;
 
             const isTablecloth = (item['קטגוריה'] || '').includes('מפות');
             const bufferDays = isTablecloth ? 1 : 0;
 
             let totalInUse = 0;
-            const start = new Date(pDate);
-            const end = new Date(rDate);
+            
+            // נרמול תאריכים מבוקשים (התחלה וסוף יום)
+            const reqStart = new Date(pDate);
+            reqStart.setHours(0,0,0,0);
+            
+            const reqEnd = new Date(rDate);
+            reqEnd.setHours(23,59,59,999);
 
             orders.forEach(order => {
                 const currentOrderCode = String(order.קוד_הזמנה || order.orderCode || order['קוד_הזמנה'] || '').trim();
                 const activeCode = String(activeOrderCode || '').trim();
 
+                // התעלם מההזמנה הנוכחית אם אנחנו במצב עריכה
                 if (activeOrderCode && currentOrderCode === activeCode) return;
                 
-                const orderStart = new Date(order.תאריך_לקיחה);
-                let orderEnd = new Date(order.תאריך_החזרה);
+                // קריאה זהירה של תאריכי ההזמנה הקיימת
+                let oStartStr = order.תאריך_לקיחה || order['תאריך_לקיחה'];
+                let oEndStr = order.תאריך_החזרה || order['תאריך_החזרה'];
+                
+                if (!oStartStr || !oEndStr) return;
+
+                // טיפול בפורמט תאריך מלא (ISO) אם קיים
+                if (oStartStr.includes('T')) oStartStr = oStartStr.split('T')[0];
+                if (oEndStr.includes('T')) oEndStr = oEndStr.split('T')[0];
+
+                const ordStart = new Date(oStartStr);
+                ordStart.setHours(0,0,0,0);
+                
+                const ordEnd = new Date(oEndStr);
+                ordEnd.setHours(23,59,59,999); // סוף היום של ההחזרה
 
                 if (isTablecloth) {
-                    orderEnd.setDate(orderEnd.getDate() + bufferDays);
+                    // הוספת יום אחד לתאריך הסיום של ההזמנה הקיימת (לצורך ניקיון)
+                    ordEnd.setDate(ordEnd.getDate() + bufferDays);
                 }
 
-                if (start <= orderEnd && end >= orderStart) {
+                // בדיקת חפיפה: האם הטווח המבוקש נוגע בטווח התפוס
+                // (התחלה מבוקשת לפני סוף תפוס) וגם (סוף מבוקש אחרי התחלה תפוסה)
+                if (reqStart <= ordEnd && reqEnd >= ordStart) {
                     try {
                         const rawCart = JSON.parse(order.raw_cart || '[]');
                         const orderItem = rawCart.find(oi => oi.שם_פריט === itemName);
