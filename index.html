@@ -463,62 +463,73 @@
             const item = inventory.find(i => i.שם_פריט === itemName);
             if (!item) return 0;
             
-            // אם אין תאריכים לבדיקה, החזר את המלאי הכללי
+            // אם לא נבחרו תאריכים, החזר את המלאי הכללי
             if (!pDate || !rDate) return item.מלאי;
 
+            // --- הגדרות באפר (יום ניקיון) ---
+            // אם זו מפה, מוסיפים 1 יום. אחרת 0.
             const isTablecloth = (item['קטגוריה'] || '').includes('מפות');
-            const bufferDays = isTablecloth ? 1 : 0;
+            const bufferDays = isTablecloth ? 1 : 0; 
+
+            // פונקציית עזר קריטית: מנרמלת תאריך לשעה 12:00 בצהריים
+            // זה מונע באגים של אזורי זמן ושעון קיץ/חורף
+            const normalizeDate = (dateInput) => {
+                if (!dateInput) return null;
+                // אם התאריך מגיע כטקסט ארוך עם שעה (ISO), קח רק את החלק של התאריך
+                let dateStr = dateInput;
+                if (typeof dateInput === 'string' && dateInput.includes('T')) {
+                    dateStr = dateInput.split('T')[0];
+                }
+                const d = new Date(dateStr);
+                // קובע את השעה ל-12 בצהריים כדי להימנע מבעיות חצות
+                d.setHours(12, 0, 0, 0);
+                return d;
+            };
+
+            const reqStart = normalizeDate(pDate);
+            const reqEnd = normalizeDate(rDate);
+
+            // אם התאריכים לא תקינים, החזר 0 (מניעת שגיאות)
+            if (!reqStart || isNaN(reqStart.getTime()) || !reqEnd || isNaN(reqEnd.getTime())) return 0;
 
             let totalInUse = 0;
-            
-            // נרמול תאריכים מבוקשים (התחלה וסוף יום)
-            const reqStart = new Date(pDate);
-            reqStart.setHours(0,0,0,0);
-            
-            const reqEnd = new Date(rDate);
-            reqEnd.setHours(23,59,59,999);
 
             orders.forEach(order => {
+                // דילוג על ההזמנה הנוכחית אם אנחנו במצב עריכה
                 const currentOrderCode = String(order.קוד_הזמנה || order.orderCode || order['קוד_הזמנה'] || '').trim();
                 const activeCode = String(activeOrderCode || '').trim();
-
-                // התעלם מההזמנה הנוכחית אם אנחנו במצב עריכה
                 if (activeOrderCode && currentOrderCode === activeCode) return;
                 
-                // קריאה זהירה של תאריכי ההזמנה הקיימת
-                let oStartStr = order.תאריך_לקיחה || order['תאריך_לקיחה'];
-                let oEndStr = order.תאריך_החזרה || order['תאריך_החזרה'];
+                const oStart = normalizeDate(order.תאריך_לקיחה || order['תאריך_לקיחה']);
+                const oEnd = normalizeDate(order.תאריך_החזרה || order['תאריך_החזרה']);
                 
-                if (!oStartStr || !oEndStr) return;
+                if (!oStart || !oEnd) return;
 
-                // טיפול בפורמט תאריך מלא (ISO) אם קיים
-                if (oStartStr.includes('T')) oStartStr = oStartStr.split('T')[0];
-                if (oEndStr.includes('T')) oEndStr = oEndStr.split('T')[0];
+                // --- חישוב הטווח התפוס ---
+                // תאריך השחרור של הפריט הוא תאריך ההחזרה + ימי הניקיון
+                const blockedUntil = new Date(oEnd);
+                blockedUntil.setDate(blockedUntil.getDate() + bufferDays);
 
-                const ordStart = new Date(oStartStr);
-                ordStart.setHours(0,0,0,0);
-                
-                const ordEnd = new Date(oEndStr);
-                ordEnd.setHours(23,59,59,999); // סוף היום של ההחזרה
-
-                if (isTablecloth) {
-                    // הוספת יום אחד לתאריך הסיום של ההזמנה הקיימת (לצורך ניקיון)
-                    ordEnd.setDate(ordEnd.getDate() + bufferDays);
-                }
-
-                // בדיקת חפיפה: האם הטווח המבוקש נוגע בטווח התפוס
-                // (התחלה מבוקשת לפני סוף תפוס) וגם (סוף מבוקש אחרי התחלה תפוסה)
-                if (reqStart <= ordEnd && reqEnd >= ordStart) {
+                // --- בדיקת חפיפה חכמה ---
+                // החפיפה מתקיימת אם:
+                // 1. התאריך המבוקש להתחלה הוא לפני (או ביום) שהפריט משתחרר (כולל יום הניקיון)
+                // 2. וגם - התאריך המבוקש להחזרה הוא אחרי (או ביום) שהפריט נלקח
+                if (reqStart <= blockedUntil && reqEnd >= oStart) {
                     try {
                         const rawCart = JSON.parse(order.raw_cart || '[]');
                         const orderItem = rawCart.find(oi => oi.שם_פריט === itemName);
-                        if (orderItem) totalInUse += parseInt(orderItem.qty);
-                    } catch(e) {}
+                        if (orderItem) {
+                            totalInUse += parseInt(orderItem.qty);
+                        }
+                    } catch(e) {
+                        // התעלם מהזמנות עם מבנה נתונים פגום
+                    }
                 }
             });
+
+            // החזרת המלאי הפנוי (מינימום 0)
             return Math.max(0, item.מלאי - totalInUse);
         }
-
         function renderGrid(items = inventory.filter(item => item.status !== 'hidden')) {
             const grid = document.getElementById('inventory-grid');
             const hasDates = pendingFormData.pDate && pendingFormData.rDate;
