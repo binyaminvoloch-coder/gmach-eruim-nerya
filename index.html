@@ -42,7 +42,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
         :root { --gold: #C5A059; --navy: #1A1C2C; }
         body { font-family: 'Assistant', sans-serif; background-color: #fcfcfc; scroll-behavior: smooth; overflow-x: hidden; }
         .serif { font-family: 'Playfair Display', serif; }
@@ -274,9 +274,9 @@
             <i data-lucide="search" class="absolute left-4 top-3 md:top-3.5 text-gray-400 w-5 h-5"></i>
         </div>
         
-        <!-- Main Home Categories (Vertical Grid) -->
-        <div id="home-categories-container" class="grid grid-cols-1 gap-6 mb-12">
-            <div class="text-center py-20"><div class="loader mx-auto mb-4"></div>טוען קטגוריות...</div>
+        <!-- Main Home Categories (Vertical Grid) -> הוספתי כאן את ה md:grid-cols-2 lg:grid-cols-3 -->
+        <div id="home-categories-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div class="col-span-full text-center py-20"><div class="loader mx-auto mb-4"></div>טוען קטגוריות...</div>
         </div>
 
         <!-- Items Grid (Hidden Initially) -->
@@ -377,7 +377,7 @@
 
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzn7kbiKQHLmqC3We50VnDpjGj3JkkC8Yg8dwB2LPUiyCjMvwoixdnIJQVfIDjiCf4p/exec';
-        const DEFAULT_IMG = 'https://via.placeholder.com/400x300.png?text=No+Image';
+        const DEFAULT_IMG = 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800';
       
         let inventory = [];
         let orders = [];
@@ -389,8 +389,8 @@
 
         // משתנים לניהול הגלילה האינסופית
         let displayedItems = []; 
-        let itemsToShow = 6;    
-        const ITEMS_BATCH = 6;  
+        let itemsToShow = 12;    
+        const ITEMS_BATCH = 12;  
 
         function formatImageUrl(url) {
             if (!url) return DEFAULT_IMG;
@@ -514,7 +514,7 @@
 
             if (pDate && rDate) {
                 document.getElementById('availability-message').classList.remove('hidden');
-                showToast("הקטלוג סונן לפי זמינות לתאריכים הנבחרים");
+                showToast("הקטלוג סונן לפי זמינות לתאריכים שנבחרו");
             } else {
                 document.getElementById('availability-message').classList.add('hidden');
             }
@@ -703,7 +703,7 @@
 
         function animateFlyToCart(event) {
             if(!event) return;
-            const btn = event.target;
+            const btn = event.currentTarget;
             const cartIcon = document.getElementById('cart-btn-icon');
             if (!cartIcon) return;
 
