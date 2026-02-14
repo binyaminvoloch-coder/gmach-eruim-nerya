@@ -107,12 +107,14 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(26, 28, 44, 0.6);
+            /* עודכן לבהירות: הופחת מ-0.6 ל-0.3 */
+            background: rgba(26, 28, 44, 0.3);
             transition: background 0.3s;
             z-index: 1;
         }
         .category-box:hover::before {
-            background: rgba(26, 28, 44, 0.4);
+             /* עודכן לבהירות: הופחת מ-0.4 ל-0.1 */
+            background: rgba(26, 28, 44, 0.1);
         }
         .category-box img {
             position: absolute;
@@ -1084,11 +1086,34 @@
 
         function preparePrint() { window.print(); }
 
-        function showAdminLogin() {
+        // --- הפונקציה המעודכנת לבדיקת סיסמה דרך השרת ---
+        async function showAdminLogin() {
             const pass = prompt('סיסמה:');
-            if (pass === '1234') {
-                document.getElementById('admin-modal').classList.remove('hidden');
-                renderAdminTable();
+            if (!pass) return;
+
+            showToast('מאמת סיסמה...');
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: "login",
+                        password: pass
+                    })
+                });
+                
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    document.getElementById('admin-modal').classList.remove('hidden');
+                    renderAdminTable();
+                    showToast('התחברת בהצלחה');
+                } else {
+                    showToast('סיסמה שגויה');
+                }
+            } catch (e) {
+                console.error(e);
+                showToast('שגיאה בתקשורת עם השרת');
             }
         }
 
