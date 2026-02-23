@@ -6,18 +6,25 @@
     
    <title>גמ"ח אירועים נריה - השאלת ציוד לאירועים ושמחות | הזמנה אונליין</title>
     <meta name="description" content='השאלת ציוד לאירועים בנריה והסביבה. גמ"ח נריה מציע מגוון רחב של ציוד: שולחנות, כיסאות, מפות, כלי הגשה ועוד. בדקו זמינות והזמינו אונליין בקלות.'>
-    <meta name="keywords" content='גמח נריה, ציוד לאירועים, השאלת כיסאות, השאלת שולחנות, גמ"ח אירועים, נריה, ציוד לשמחות, השכרת ציוד לאירועים, טלמון, דולב, בנימין'>
+    <meta name="keywords" content='גמח נריה, ציוד לאירועים, השאלת כיסאות, השאלת שולחנות, גמ"ח אירועים, נריה, ציוד לשמחות, השכרת ציוד לאירועים, טלמון, דולב, גוש טלמונים, בנימין, מפות לאירועים'>
     <meta name="author" content="גמח אירועים נריה">
     <meta name="robots" content="index, follow">
     
-    <!-- === SEO Tags (Updated) === -->
+    <!-- === SEO & Performance Enhancements === -->
+    <link rel="preconnect" href="https://script.google.com" crossorigin>
+    <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- שימו לב: כדי שגוגל יאנדקס את האתר רשמית, מומלץ להוסיף כאן תגית אימות של Google Search Console -->
+    <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" /> -->
+    
     <link rel="canonical" href="https://gmach-eruim-nerya.vercel.app/" />
     
-    <meta property="og:title" content='גמ"ח אירועים נריה - קטלוג והזמנות'>
-    <meta property="og:description" content="מערכת הזמנות חכמה לציוד אירועים ביישוב נריה. היכנסו לצפייה בקטלוג ובדיקת זמינות.">
+    <meta property="og:title" content='גמ"ח אירועים נריה - קטלוג והזמנות ציוד'>
+    <meta property="og:description" content="מערכת הזמנות חכמה לציוד אירועים ביישוב נריה. שולחנות, כיסאות, מפות וכלים. היכנסו לצפייה בקטלוג ובדיקת זמינות.">
     <meta property="og:image" content="https://gmach-eruim-nerya.vercel.app/preview.jpg">
     <meta property="og:url" content="https://gmach-eruim-nerya.vercel.app/">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="גמ\"ח אירועים נריה">
     <meta property="og:locale" content="he_IL">
     <!-- === End SEO Tags === -->
 
@@ -40,10 +47,16 @@
         "latitude": 31.936,
         "longitude": 35.138
       },
-      "description": "השאלת ציוד לאירועים, שמחות ושבתות ביישוב נריה. שולחנות, כיסאות וציוד נלווה.",
+      "description": "השאלת ציוד לאירועים, שמחות ושבתות ביישוב נריה. שולחנות, כיסאות, מפות וציוד נלווה להשאלה נוחה אונליין.",
       "openingHours": "Su-Th 10:00-17:30",
       "telephone": "+972-54-3040965",
-      "priceRange": "$"
+      "priceRange": "$",
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "השאלת כיסאות לאירועים" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "השאלת שולחנות מתקפלים" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "השאלת מפות בד לאירועים" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "כלי הגשה ומיחמים לשבת" } }
+      ]
     }
     </script>
     
@@ -115,13 +128,11 @@
             content: '';
             position: absolute;
             inset: 0;
-            /* עודכן לבהירות: הופחת מ-0.6 ל-0.3 */
             background: rgba(26, 28, 44, 0.3);
             transition: background 0.2s;
             z-index: 1;
         }
         .category-box:hover::before {
-             /* עודכן לבהירות: הופחת מ-0.4 ל-0.1 */
             background: rgba(26, 28, 44, 0.1);
         }
         .category-box img {
@@ -132,9 +143,6 @@
             object-fit: cover;
             transition: transform 0.5s;
             z-index: 0;
-        }
-        .category-box:hover img {
-            transform: scale(1.1);
         }
         .category-box h3 {
             position: relative;
@@ -149,18 +157,21 @@
 </head>
 <body class="text-slate-800">
     
-    <!-- SEO Fallback Content (Hidden from users, visible to crawlers) -->
+    <!-- SEO Fallback Content (Hidden visually, visible to text browsers and simple crawlers) -->
     <noscript>
-        <div style="padding: 20px; background: #f0f0f0;">
-            <h1>גמ"ח אירועים נריה - קטלוג והזמנות</h1>
-            <p>ברוכים הבאים לגמ"ח נריה. אנו מציעים שירות השאלת ציוד לאירועים, שמחות, בריתות ושבתות חתן.</p>
+        <div style="padding: 20px; background: #fff; color: #333; text-align: right; direction: rtl;">
+            <h1>גמ"ח אירועים נריה - קטלוג והזמנות ציוד לאירועים ושמחות</h1>
+            <p>ברוכים הבאים למערכת ההזמנות של גמ"ח נריה. אנו מציעים שירות השאלת ציוד לאירועים, שמחות, בריתות, בר מצווה, שבתות חתן ועוד ביישוב נריה ובגוש טלמונים (בנימין).</p>
+            <h2>הציוד שלנו כולל:</h2>
             <ul>
-                <li>השאלת שולחנות וכיסאות בנריה</li>
-                <li>מפות איכותיות לאירועים</li>
-                <li>כלי הגשה ומיחמים</li>
-                <li>ציוד לשמחות בבנימין</li>
+                <li>השאלת שולחנות פלסטיק מתקפלים</li>
+                <li>השאלת כיסאות כתר ופלסטיק לאורחים</li>
+                <li>מפות איכותיות במגוון צבעים (לבן, קרם ועוד) לשבתות ואירועים</li>
+                <li>כלי הגשה, כפות מזיגה, סכו"ם וצלחות</li>
+                <li>מיחמים לשבת ופלטות חימום</li>
+                <li>ציוד נלווה לשמחות מכל הסוגים</li>
             </ul>
-            <p>השירות מיועד לתושבי נריה והסביבה. הזמינו אונליין בקלות.</p>
+            <p>השירות מיועד לתושבי נריה והסביבה. אנו פועלים בימים א'-ה' בין השעות 10:00 ל-17:30 בתיאום מראש. למידע נוסף והזמנות טלפוניות/וואטסאפ: 054-3040965.</p>
         </div>
     </noscript>
 
@@ -171,12 +182,12 @@
 
     <!-- Lightbox Modal -->
     <div id="lightbox" onclick="this.classList.add('hidden')" class="hidden fixed inset-0 bg-black/90 z-[300] flex items-center justify-center p-4 cursor-pointer backdrop-blur-sm no-print">
-        <img id="lightbox-img" src="" alt="תצוגה מוגדלת" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl border-2 border-gold object-contain transition-transform transform scale-95 duration-200" onclick="event.stopPropagation()">
+        <img id="lightbox-img" src="" alt="תצוגה מוגדלת של ציוד לאירועים" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl border-2 border-gold object-contain transition-transform transform scale-95 duration-200" onclick="event.stopPropagation()">
         <button onclick="document.getElementById('lightbox').classList.add('hidden')" class="absolute top-4 right-4 text-white/80 hover:text-white p-2 bg-white/10 rounded-full" aria-label="סגור תמונה"><i data-lucide="x"></i></button>
         <p class="absolute bottom-10 text-white/70 text-sm">לחץ בכל מקום לסגירה</p>
     </div>
 
-    <a href="https://wa.me/972543040965" target="_blank" id="whatsapp-float" class="no-print" aria-label="צור קשר בוואטסאפ">
+    <a href="https://wa.me/972543040965" target="_blank" id="whatsapp-float" class="no-print" aria-label="צור קשר בוואטסאפ עם גמ''ח נריה">
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
@@ -200,7 +211,7 @@
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
 
-                <button id="cart-btn-icon" onclick="toggleCart(true)" class="relative bg-white/10 p-3 md:p-4 rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all" aria-label="עגלת קניות">
+                <button id="cart-btn-icon" onclick="toggleCart(true)" class="relative bg-white/10 p-3 md:p-4 rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all" aria-label="עגלת קניות ציוד אירועים">
                     <i data-lucide="shopping-cart" class="w-5 h-5 md:w-6 md:h-6"></i>
                     <span id="cart-count" class="absolute -top-2 -right-2 gold-gradient text-navy text-[11px] font-extrabold w-6 h-6 rounded-full flex items-center justify-center border-2 border-navy hidden">0</span>
                 </button>
@@ -221,7 +232,7 @@
         <div class="flex-1 flex flex-col items-center justify-center text-center px-4 z-10 space-y-4 md:space-y-6 pb-8 mt-10 md:mt-24">
             <div>
                 <h1 class="text-4xl md:text-7xl font-bold mb-2 md:mb-4 serif">גמ"ח אירועים נריה</h1>
-                <p class="text-lg md:text-xl text-white/80 max-w-2xl font-light mx-auto">ציוד מושלם לאירועים, שמחות והתכנסויות.</p>
+                <p class="text-lg md:text-xl text-white/80 max-w-2xl font-light mx-auto">השאלת ציוד מושלם לאירועים, שמחות והתכנסויות.</p>
                 
                 <div class="mt-4 inline-block bg-red-500/20 backdrop-blur-md border border-red-400/30 px-4 py-2 rounded-xl">
                     <p class="text-xs md:text-sm font-bold text-red-100 flex items-center gap-2">
@@ -248,17 +259,17 @@
         
         <!-- Smart Availability Check Section -->
         <div class="bg-white rounded-[2rem] p-6 mb-8 shadow-lg border border-gold/20 relative z-30 -mt-16 md:-mt-20">
-            <h2 class="sr-only">בדיקת זמינות ציוד</h2>
+            <h2 class="sr-only">בדיקת זמינות ציוד אירועים להשאלה</h2>
             <div class="flex flex-col lg:flex-row items-end gap-4 lg:gap-6">
                 <div class="flex-1 w-full grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-navy mb-2 mr-1 uppercase tracking-wider flex items-center gap-1">
+                        <label class="block text-xs font-bold text-navy mb-2 mr-1 uppercase tracking-wider flex items-center gap-1" for="filter-p-date">
                             <i data-lucide="calendar" class="w-3 h-3 text-gold"></i> תאריך איסוף
                         </label>
                         <input type="date" id="filter-p-date" onchange="handleDateFilter()" class="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 focus:ring-2 focus:ring-gold focus:border-transparent outline-none text-sm transition-all">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-navy mb-2 mr-1 uppercase tracking-wider flex items-center gap-1">
+                        <label class="block text-xs font-bold text-navy mb-2 mr-1 uppercase tracking-wider flex items-center gap-1" for="filter-r-date">
                             <i data-lucide="calendar-check" class="w-3 h-3 text-gold"></i> תאריך החזרה
                         </label>
                         <input type="date" id="filter-r-date" onchange="handleDateFilter()" class="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 focus:ring-2 focus:ring-gold focus:border-transparent outline-none text-sm transition-all">
@@ -286,7 +297,7 @@
                          <button onclick="backToMain()" class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors flex items-center justify-center gap-1 text-xs font-bold px-3">
                             <i data-lucide="arrow-right" class="w-4 h-4"></i> חזור
                          </button>
-                        <h3 class="text-sm font-bold uppercase tracking-widest text-gold" id="current-category-title">הקטלוג שלנו</h3>
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-gold" id="current-category-title">הקטלוג שלנו</h2>
                     </div>
                     <div class="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar scroll-smooth" id="category-filters" style="max-width: 100vw;"></div>
                 </div>
@@ -295,12 +306,13 @@
 
         <!-- Search Container (Always visible) -->
          <div class="relative w-full mb-8">
-            <input type="text" id="searchInput" oninput="handleSearch()" placeholder="חפש פריט בקטלוג..."
+            <label for="searchInput" class="sr-only">חפש ציוד לאירועים</label>
+            <input type="text" id="searchInput" oninput="handleSearch()" placeholder="חפש ציוד, שולחנות, מפות בקטלוג..."
                 class="w-full pl-12 pr-6 py-3 md:py-3.5 rounded-2xl bg-white border border-gray-100 shadow-sm focus:ring-2 focus:ring-gold transition-all outline-none">
             <i data-lucide="search" class="absolute left-4 top-3 md:top-3.5 text-gray-400 w-5 h-5"></i>
         </div>
         
-        <!-- Main Home Categories (Vertical Grid) -> הוספתי כאן את ה md:grid-cols-2 lg:grid-cols-3 -->
+        <!-- Main Home Categories (Vertical Grid) -->
         <div id="home-categories-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             <div class="col-span-full text-center py-20"><div class="loader mx-auto mb-4"></div>טוען קטגוריות...</div>
         </div>
@@ -314,19 +326,19 @@
         <div class="bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 shadow-xl border border-gray-100 flex flex-col md:flex-row gap-8 items-center justify-between">
             <div class="w-full md:w-1/2 space-y-6">
                 <div>
-                    <h3 class="text-2xl font-bold serif text-navy mb-2">אנחנו כאן בשבילכם</h3>
+                    <h2 class="text-2xl font-bold serif text-navy mb-2">מיקום הגמ"ח - אנחנו כאן בשבילכם</h2>
                     <p class="text-gray-500 text-sm md:text-base">הגמ"ח ממוקם ביישוב נריה. האיסוף וההחזרה מתבצעים מהמחסן בתיאום מראש בלבד בשעות הפעילות.</p>
                 </div>
                 <div class="flex gap-3 md:gap-4">
                     <a href="https://waze.com/ul?ll=31.936,35.138&navigate=yes" target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 bg-[#33CCFF] hover:bg-[#2cb5e3] text-white py-3 px-4 md:px-6 rounded-xl font-bold transition-transform hover:scale-105 shadow-lg shadow-blue-200 text-sm md:text-base">
                         <i data-lucide="navigation" class="w-4 h-4 md:w-5 md:h-5"></i>
-                        נווט עם Waze
+                        נווט עם Waze לנריה
                     </a>
                 </div>
             </div>
             <div class="w-full md:w-1/2 h-56 md:h-80 bg-gray-200 rounded-[1.5rem] map-container shadow-inner overflow-hidden relative">
                 <iframe 
-                    title="מפת הגעה לגמ&quot;ח נריה"
+                    title="מפת הגעה לגמ&quot;ח נריה בבנימין"
                     src="https://maps.google.com/maps?q=נריה&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>
@@ -339,7 +351,7 @@
     <div id="cart-sidebar" class="fixed inset-0 bg-navy/60 backdrop-blur-sm z-[100] transition-opacity duration-300 opacity-0 pointer-events-none no-print" onclick="toggleCart(false)">
         <div class="fixed inset-y-0 left-0 w-full md:w-[500px] bg-white shadow-2xl transform -translate-x-full transition-transform duration-500 flex flex-col" onclick="event.stopPropagation()">
             
-            <button onclick="toggleCart(false)" class="absolute top-4 left-4 z-50 p-2 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 shadow-sm md:hidden">
+            <button onclick="toggleCart(false)" class="absolute top-4 left-4 z-50 p-2 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 shadow-sm md:hidden" aria-label="סגור חלון">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
 
@@ -378,7 +390,7 @@
                 </div>
                 <div class="flex items-center gap-4">
                     <button id="admin-view-toggle" onclick="showOrdersHistory()" class="px-4 py-2 bg-[#132f55] text-[#f5d37a] rounded-xl hover:bg-white/10 text-xs font-bold transition-colors hidden md:block">היסטוריית הזמנות</button>
-                    <button onclick="closeAdmin()" class="p-2 -mt-1 text-[#f5d37a] bg-white/10 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="x"></i></button>
+                    <button onclick="closeAdmin()" class="p-2 -mt-1 text-[#f5d37a] bg-white/10 rounded-full hover:bg-white/20 transition-colors" aria-label="סגור"><i data-lucide="x"></i></button>
                 </div>
             </div>
             <div class="md:hidden p-4 bg-[#132f55] border-t border-white/10">
@@ -436,6 +448,37 @@
             return url;
         }
 
+        // פונקציה ליצירת Schema דינמי למוצרים כך שגוגל יסרוק אותם (תוספת עבור SEO)
+        function injectSEOData(inventoryData) {
+            const scriptTag = document.createElement('script');
+            scriptTag.type = 'application/ld+json';
+            const itemListElement = inventoryData.filter(i => i.status !== 'hidden').map((item, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    "@type": "Product",
+                    "name": item.שם_פריט,
+                    "description": `השאלת ${item.שם_פריט} לאירועים ושמחות מגמ"ח נריה. קטגוריה: ${item.קטגוריה || 'כללי'}`,
+                    "image": formatImageUrl(item.תמונה),
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "ILS",
+                        "availability": parseInt(item.מלאי) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+                    }
+                }
+            }));
+
+            scriptTag.text = JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "name": "קטלוג ציוד גמ\"ח נריה",
+                "description": "רשימת הציוד הזמין להשאלה בגמ\"ח אירועים נריה",
+                "itemListElement": itemListElement
+            });
+            document.head.appendChild(scriptTag);
+        }
+
         async function init() {
             try {
                 const res = await fetch(SCRIPT_URL);
@@ -449,6 +492,10 @@
                 renderHomeCategories(); // במקום renderGrid ו renderCategories
                 updateCartUI();
                 if (window.lucide) lucide.createIcons();
+                
+                // הזרקת נתוני SEO לגוגל לאחר טעינת המלאי
+                injectSEOData(inventory);
+
             } catch (e) { 
                 console.error(e);
                 showToast('שגיאה בטעינת הנתונים'); 
@@ -475,8 +522,8 @@
                 const bgImage = repItem ? formatImageUrl(repItem.תמונה) : DEFAULT_IMG;
 
                 return `
-                    <div onclick="enterCategory('${cat}')" class="category-box">
-                        <img src="${bgImage}" alt="${cat}">
+                    <div role="button" tabindex="0" onclick="enterCategory('${cat}')" onkeypress="if(event.key === 'Enter') enterCategory('${cat}')" class="category-box" aria-label="צפה במוצרי קטגוריית ${cat}">
+                        <img src="${bgImage}" alt="השאלת ציוד אירועים - קטגוריית ${cat} בגמ״ח נריה">
                         <h3>${cat}</h3>
                     </div>
                 `;
@@ -683,7 +730,7 @@
                             <img src="${formatImageUrl(item.תמונה)}" 
                                  loading="lazy"
                                  decoding="async"
-                                 alt="${itemNameSafe} - השאלת ציוד ${categorySafe}" 
+                                 alt="${itemNameSafe} - השאלת ציוד בגמ״ח נריה (קטגוריה: ${categorySafe})" 
                                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                             
                             <div class="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-[10px] font-bold text-navy shadow-sm">
@@ -910,17 +957,17 @@
                         הגדר אוטומטית לסוף השבוע הקרוב
                     </button>
 
-                    <input type="text" id="u-name" placeholder="שם מלא" value="${pendingFormData.name || ''}" class="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-gold transition-all">
-                    <input type="tel" id="u-phone" placeholder="מספר טלפון" value="${pendingFormData.phone || ''}" class="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-gold transition-all">
+                    <input type="text" id="u-name" placeholder="שם מלא" value="${pendingFormData.name || ''}" aria-label="שם מלא" class="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-gold transition-all">
+                    <input type="tel" id="u-phone" placeholder="מספר טלפון" value="${pendingFormData.phone || ''}" aria-label="מספר טלפון" class="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-gold transition-all">
                     <div class="grid grid-cols-2 gap-4">
-                        <div><label class="text-[10px] text-gray-400 block mb-1 mr-1">תאריך לקיחה</label><input type="date" id="p-date" value="${defaultP}" class="w-full p-4 bg-gray-50 rounded-2xl border-none text-sm focus:ring-2 focus:ring-gold transition-all"></div>
-                        <div><label class="text-[10px] text-gray-400 block mb-1 mr-1">תאריך החזרה</label><input type="date" id="r-date" value="${defaultR}" class="w-full p-4 bg-gray-50 rounded-2xl border-none text-sm focus:ring-2 focus:ring-gold transition-all"></div>
+                        <div><label class="text-[10px] text-gray-400 block mb-1 mr-1" for="p-date">תאריך לקיחה</label><input type="date" id="p-date" value="${defaultP}" class="w-full p-4 bg-gray-50 rounded-2xl border-none text-sm focus:ring-2 focus:ring-gold transition-all"></div>
+                        <div><label class="text-[10px] text-gray-400 block mb-1 mr-1" for="r-date">תאריך החזרה</label><input type="date" id="r-date" value="${defaultR}" class="w-full p-4 bg-gray-50 rounded-2xl border-none text-sm focus:ring-2 focus:ring-gold transition-all"></div>
                     </div>
                     <div class="bg-blue-50 p-4 rounded-2xl text-xs text-blue-800 flex gap-2">
                         <i data-lucide="info" class="w-4 h-4 shrink-0"></i>
                         <span> שימו לב: בהזמנת מפות אנו משאירים יום נוסף לניקוי בין הזמנה להזמנה, כדי שהמפות תגענה נקיות ויפות לשמחה הבאה. תודה על שיתוף הפעולה!</span>
                     </div>
-                    <textarea id="u-notes" placeholder="הערות מיוחדות..." class="w-full p-4 bg-gray-50 rounded-2xl h-24 border-none focus:ring-2 focus:ring-gold transition-all">${pendingFormData.notes || ''}</textarea>
+                    <textarea id="u-notes" placeholder="הערות מיוחדות..." aria-label="הערות להזמנה" class="w-full p-4 bg-gray-50 rounded-2xl h-24 border-none focus:ring-2 focus:ring-gold transition-all">${pendingFormData.notes || ''}</textarea>
                 </div>`;
         }
 
@@ -1110,7 +1157,6 @@
 
         function preparePrint() { window.print(); }
 
-        // --- הפונקציה המעודכנת לבדיקת סיסמה דרך השרת ---
         async function showAdminLogin() {
             const pass = prompt('סיסמה:');
             if (!pass) return;
